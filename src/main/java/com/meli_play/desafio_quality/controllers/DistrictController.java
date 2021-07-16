@@ -15,17 +15,17 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/discrict")
 public class DistrictController {
 
     @Autowired
     DistrictService districtService;
 
-    @PostMapping("/addDiscrict")
+    @PostMapping("/add")
     public ResponseEntity addDistrict(@RequestBody @Valid DiscrictForm discrictForm, UriComponentsBuilder uriComponentsBuilder){
         District district = DiscrictForm.toModel(discrictForm);
         districtService.addDistrict(district);
-        URI uri = uriComponentsBuilder.path("/api/addDiscrict/{id}").buildAndExpand(district.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/api/discrict/add/{id}").buildAndExpand(district.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }

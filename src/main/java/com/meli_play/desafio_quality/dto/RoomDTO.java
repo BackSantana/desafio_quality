@@ -15,27 +15,11 @@ public class RoomDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private double squareMeter;
 
-    public RoomDTO(String roomName, double roomWidth, double roomLength) {
-        this.roomName = roomName;
-        this.roomWidth = roomWidth;
-        this.roomLength = roomLength;
-    }
-
     public RoomDTO(String roomName, double roomWidth, double roomLength, double squareMeter) {
         this.roomName = roomName;
         this.roomWidth = roomWidth;
         this.roomLength = roomLength;
         this.squareMeter = squareMeter;
-    }
-
-
-    public static List<RoomDTO> toDTO(List<Room> roomList){
-        List<RoomDTO> roomDTOList = new ArrayList<>();
-        roomList.forEach(room -> roomDTOList.add(new RoomDTO(
-                        room.getRoomName(),
-                        room.getRoomWidth(),
-                        room.getRoomLength())));
-        return roomDTOList;
     }
 
     public static List<RoomDTO> toDTOM2Room(List<Room> roomList){

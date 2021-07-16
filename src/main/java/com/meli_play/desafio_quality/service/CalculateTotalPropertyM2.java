@@ -7,7 +7,7 @@ import java.util.List;
 public class CalculateTotalPropertyM2 {
 
     public static double calulateTotalPropertyM2(List<Room> roomList){
-        return roomList.stream().mapToDouble(room -> calculateM2ByRoom(room)).sum();
+        return roomList.stream().mapToDouble(CalculateTotalPropertyM2::calculateM2ByRoom).sum();
      }
 
     public static double calculateM2ByRoom(Room room){

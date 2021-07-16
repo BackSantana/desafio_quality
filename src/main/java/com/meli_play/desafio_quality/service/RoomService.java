@@ -12,7 +12,6 @@ public class RoomService {
 
     public Room biggestRoom(Property property){
         List<Room> roomList = property.getRoomLists();
-        setValuesSquareMeter(roomList);
         Comparator<Room> comparator = Comparator.comparing(Room::getSquareMeter);
 
         return roomList.stream().max(comparator).get();

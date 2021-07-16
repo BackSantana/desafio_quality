@@ -15,6 +15,7 @@ import com.meli_play.desafio_quality.service.PropertyService;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.net.URI;
 
 @RestController
@@ -35,10 +36,11 @@ public class PropertyController {
         Property property = PropertyForm.toModel(homeForm, district);
         propertyService.add(property);
         URI uri = uriComponentsBuilder.path("/api/addProperty/{id}").buildAndExpand(property.getId()).toUri();
+
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping("/getProperty/{propertyId}")
+    @GetMapping("/get/{propertyId}")
     public ResponseEntity getProperty(@PathVariable Long propertyId){
         return ResponseEntity.ok(propertyService.getById(propertyId));
     }
@@ -47,30 +49,28 @@ public class PropertyController {
     public ResponseEntity<PropertyDTO> calculatePropertyM2(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
         double sum = propertyService.calculateTotalPropertyM2(property);
-        PropertyCalculations propertyCalculations = new PropertyCalculations();
-        propertyCalculations.setTotalM2(sum);
-        return ResponseEntity.ok(PropertyDTO.toDTO(property, propertyCalculations));
+        PropertyCalculations propertyCalculations = new PropertyCalculations(sum);
+
+        return ResponseEntity.ok(PropertyDTO.toDTOAll(property, propertyCalculations));
     }
 
     @GetMapping("/calculateValue/{propertyId}")
     public ResponseEntity<PropertyDTO> calculateValueProperty(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
-        PropertyCalculations propertyCalculations = new PropertyCalculations();
-        propertyCalculations.setValue_property_m2(propertyService.valueProperty(property));
-        return ResponseEntity.ok(PropertyDTO.toDTO(property,propertyCalculations));
+        PropertyCalculations propertyCalculations = new PropertyCalculations(propertyService.valueProperty(property));
+
+        return ResponseEntity.ok(PropertyDTO.toDTOAll(property,propertyCalculations));
     }
 
     @GetMapping("/calculateAll/{propertyId}")
     public ResponseEntity<PropertyDTO> calculateAllProperty(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
-        roomService.setValuesSquareMeter(property.getRoomLists());
 
-        PropertyCalculations propertyCalculations = new PropertyCalculations();
         BiggestRoomDTO biggestRoomDTO = BiggestRoomDTO.toDTO(roomService.biggestRoom(property));
+        BigDecimal valueTotal = propertyService.valueProperty(property);
+        double totalM2 = propertyService.calculateTotalPropertyM2(property);
 
-        propertyCalculations.setValue_property_m2(propertyService.valueProperty(property));
-        propertyCalculations.setBiggestRoom(biggestRoomDTO);
-        propertyCalculations.setTotalM2(propertyService.calculateTotalPropertyM2(property));
+        PropertyCalculations propertyCalculations = new PropertyCalculations(totalM2, valueTotal, biggestRoomDTO);
 
         return ResponseEntity.ok(PropertyDTO.toDTOAll(property, propertyCalculations));
     }

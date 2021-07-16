@@ -27,9 +27,9 @@ public class RoomController {
     public ResponseEntity<PropertyDTO> largestRoom(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
         BiggestRoomDTO biggestRoomDTO = BiggestRoomDTO.toDTO(roomService.biggestRoom(property));
-        PropertyCalculations propertyCalculations = new PropertyCalculations();
-        propertyCalculations.setBiggestRoom(biggestRoomDTO);
-        return ResponseEntity.ok(PropertyDTO.toDTO(property, propertyCalculations));
+        PropertyCalculations propertyCalculations = new PropertyCalculations(biggestRoomDTO);
+
+        return ResponseEntity.ok(PropertyDTO.toDTOAll(property, propertyCalculations));
     }
 
     @GetMapping("/findAll/{propertyId}")

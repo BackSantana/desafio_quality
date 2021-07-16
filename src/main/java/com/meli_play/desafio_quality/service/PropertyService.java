@@ -13,7 +13,11 @@ public class PropertyService {
     @Autowired
     PropertyRepository propertyRepository;
 
+    @Autowired
+    RoomService roomService;
+
     public void add(Property property){
+        roomService.setValuesSquareMeter(property.getRoomLists());
         propertyRepository.save(property);
     }
 

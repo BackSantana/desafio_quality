@@ -30,15 +30,6 @@ public class PropertyDTO {
         this.roomLists = roomLists;
     }
 
-    public static PropertyDTO toDTO(Property property, PropertyCalculations propertyCalculations){
-        return new PropertyDTO(
-                property.getId(),
-                property.getNome(),
-                DistrictDTO.toDTO(property.getDistrict()),
-                RoomDTO.toDTO(property.getRoomLists()),
-                propertyCalculations);
-    }
-
     public static PropertyDTO toDTOAll(Property property, PropertyCalculations propertyCalculations){
         return new PropertyDTO(
                 property.getId(),
