@@ -40,10 +40,18 @@ public class PropertyController {
 
     @GetMapping("/calculatePropertyM2/{propertyId}")
     public ResponseEntity<PropertyDTO> calculatePropertyM2(@PathVariable Long propertyId){
-        double sum = propertyService.calculateTotalPropertyM2(propertyService.getById(propertyId));
+        Property property = propertyService.getById(propertyId);
+        double sum = propertyService.calculateTotalPropertyM2(property);
         PropertyCalculations propertyCalculations = new PropertyCalculations();
         propertyCalculations.setTotalM2(sum);
-        PropertyDTO propertyDTO =  PropertyDTO.toDTO(propertyService.getById(propertyId), propertyCalculations);
-        return ResponseEntity.ok(propertyDTO);
+        return ResponseEntity.ok(PropertyDTO.toDTO(property, propertyCalculations));
+    }
+
+    @GetMapping("/calculateValueProperty/{propertyId}")
+    public ResponseEntity<PropertyDTO> calculateValueProperty(@PathVariable Long propertyId){
+        Property property = propertyService.getById(propertyId);
+        PropertyCalculations propertyCalculations = new PropertyCalculations();
+        propertyCalculations.setValue_district_m2(propertyService.valueProperty(property));
+        return ResponseEntity.ok(PropertyDTO.toDTO(property,propertyCalculations));
     }
 }

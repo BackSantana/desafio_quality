@@ -6,6 +6,8 @@ import com.meli_play.desafio_quality.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class PropertyService {
     @Autowired
@@ -21,5 +23,10 @@ public class PropertyService {
 
     public double calculateTotalPropertyM2(Property property){
         return CalculateTotalPropertyM2.calulateTotalPropertyM2(property.getRoomLists());
+    }
+
+    public BigDecimal valueProperty(Property property){
+        double sum = CalculateTotalPropertyM2.calulateTotalPropertyM2(property.getRoomLists());
+        return BigDecimal.valueOf(sum).multiply(property.getDistrict().getValueDistrictM2());
     }
 }
