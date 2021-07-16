@@ -1,6 +1,7 @@
 package com.meli_play.desafio_quality.controllers;
 
-import com.meli_play.desafio_quality.forms.DiscrictForm;
+import com.meli_play.desafio_quality.dto.PropertyCalculations;
+import com.meli_play.desafio_quality.dto.PropertyDTO;
 import com.meli_play.desafio_quality.forms.PropertyForm;
 import com.meli_play.desafio_quality.models.District;
 import com.meli_play.desafio_quality.models.Property;
@@ -37,11 +38,12 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.getById(propertyId));
     }
 
-    @PostMapping("/addDiscrict")
-    public ResponseEntity addDistrict(@RequestBody @Valid DiscrictForm discrictForm, UriComponentsBuilder uriComponentsBuilder){
-        District district = DiscrictForm.toModel(discrictForm);
-        districtService.addDistrict(district);
-        URI uri = uriComponentsBuilder.path("/api/addDiscrict/{id}").buildAndExpand(district.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    @GetMapping("/calculatePropertyM2/{propertyId}")
+    public ResponseEntity<PropertyDTO> calculatePropertyM2(@PathVariable Long propertyId){
+        double sum = propertyService.calculateTotalPropertyM2(propertyService.getById(propertyId));
+        PropertyCalculations propertyCalculations = new PropertyCalculations();
+        propertyCalculations.setTotalM2(sum);
+        PropertyDTO propertyDTO =  PropertyDTO.toDTO(propertyService.getById(propertyId), propertyCalculations);
+        return ResponseEntity.ok(propertyDTO);
     }
 }

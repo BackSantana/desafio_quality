@@ -18,4 +18,8 @@ public class PropertyService {
     public Property getById(Long id){
         return propertyRepository.findById(id).orElseThrow(() -> new NotFoundException(String.format("[ %s ] id not found", id)));
     }
+
+    public double calculateTotalPropertyM2(Property property){
+        return CalculateTotalPropertyM2.calulateTotalPropertyM2(property.getRoomLists());
+    }
 }

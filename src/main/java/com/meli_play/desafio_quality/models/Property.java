@@ -1,9 +1,5 @@
 package com.meli_play.desafio_quality.models;
-
-import com.meli_play.desafio_quality.forms.DiscrictForm;
-import com.meli_play.desafio_quality.forms.RoomForm;
 import lombok.Data;
-import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 
 import javax.persistence.*;
 import java.util.List;
