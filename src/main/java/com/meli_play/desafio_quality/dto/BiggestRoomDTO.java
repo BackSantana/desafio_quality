@@ -17,7 +17,7 @@ public class BiggestRoomDTO {
         this.squareMeter = squareMeter;
     }
 
-    public static BiggestRoomDTO toDTO(Room room, Double squareMeter){
-        return new BiggestRoomDTO(room.getRoomName(), room.getRoomWidth(), room.getRoomLength(), squareMeter);
+    public static BiggestRoomDTO toDTO(Room room){
+        return new BiggestRoomDTO(room.getRoomName(), room.getRoomWidth(), room.getRoomLength(), room.getSquareMeter());
     }
 }

@@ -12,16 +12,13 @@ public class RoomService {
 
     public Room biggestRoom(Property property){
         List<Room> roomList = property.getRoomLists();
-        Comparator<Room> comparator = Comparator.comparing(room -> CalculateTotalPropertyM2.calculateM2ByRoom(room));
+        setValuesSquareMeter(roomList);
+        Comparator<Room> comparator = Comparator.comparing(Room::getSquareMeter);
 
         return roomList.stream().max(comparator).get();
      }
 
-     public Double biggestRoomValue(Property property){
-         return property.getRoomLists()
-                 .stream()
-                 .mapToDouble(room -> CalculateTotalPropertyM2.calculateM2ByRoom(room))
-                 .max()
-                 .getAsDouble();
+     public void setValuesSquareMeter(List<Room> roomList){
+         roomList.forEach(room -> room.setSquareMeter(CalculateTotalPropertyM2.calculateM2ByRoom(room)));
      }
 }

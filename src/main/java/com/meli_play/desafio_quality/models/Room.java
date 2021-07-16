@@ -16,6 +16,7 @@ public class Room {
     private String roomName;
     private double roomWidth;
     private double roomLength;
+    private double squareMeter;
 
     public Room(String roomName, double roomWidth, double roomLength) {
         this.roomName = roomName;

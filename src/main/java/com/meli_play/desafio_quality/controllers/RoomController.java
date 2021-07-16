@@ -23,12 +23,19 @@ public class RoomController {
     @Autowired
     PropertyService propertyService;
 
-    @GetMapping("/largest/{propertyId}")
+    @GetMapping("/biggest/{propertyId}")
     public ResponseEntity<PropertyDTO> largestRoom(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
-        BiggestRoomDTO biggestRoomDTO = BiggestRoomDTO.toDTO(roomService.biggestRoom(property), roomService.biggestRoomValue(property));
+        BiggestRoomDTO biggestRoomDTO = BiggestRoomDTO.toDTO(roomService.biggestRoom(property));
         PropertyCalculations propertyCalculations = new PropertyCalculations();
         propertyCalculations.setBiggestRoom(biggestRoomDTO);
         return ResponseEntity.ok(PropertyDTO.toDTO(property, propertyCalculations));
+    }
+
+    @GetMapping("/findAll/{propertyId}")
+    public ResponseEntity<PropertyDTO> findAllRoom(@PathVariable Long propertyId){
+        Property property = propertyService.getById(propertyId);
+        roomService.setValuesSquareMeter(property.getRoomLists());
+        return ResponseEntity.ok(PropertyDTO.toDTOM2Room(property));
     }
 }
