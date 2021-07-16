@@ -10,7 +10,7 @@ public class CalculateTotalPropertyM2 {
         return roomList.stream().mapToDouble(room -> calculateM2ByRoom(room)).sum();
      }
 
-    private static double calculateM2ByRoom(Room room){
+    public static double calculateM2ByRoom(Room room){
         return room.getRoomLength() * room.getRoomWidth();
     }
 }

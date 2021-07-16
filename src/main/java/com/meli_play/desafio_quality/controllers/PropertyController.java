@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/property")
 public class PropertyController {
     @Autowired
     PropertyService propertyService;
@@ -24,7 +24,7 @@ public class PropertyController {
     @Autowired
     DistrictService districtService;
 
-    @PostMapping("/addProperty")
+    @PostMapping("/add")
     public ResponseEntity addProperty(@RequestBody @Valid PropertyForm homeForm, UriComponentsBuilder uriComponentsBuilder){
         District district = districtService.getDistrict(homeForm.getDiscrictId());
          Property property = PropertyForm.toModel(homeForm, district);
@@ -38,7 +38,7 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.getById(propertyId));
     }
 
-    @GetMapping("/calculatePropertyM2/{propertyId}")
+    @GetMapping("/calculateM2/{propertyId}")
     public ResponseEntity<PropertyDTO> calculatePropertyM2(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
         double sum = propertyService.calculateTotalPropertyM2(property);
@@ -47,7 +47,7 @@ public class PropertyController {
         return ResponseEntity.ok(PropertyDTO.toDTO(property, propertyCalculations));
     }
 
-    @GetMapping("/calculateValueProperty/{propertyId}")
+    @GetMapping("/calculateValue/{propertyId}")
     public ResponseEntity<PropertyDTO> calculateValueProperty(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
         PropertyCalculations propertyCalculations = new PropertyCalculations();

@@ -11,4 +11,6 @@ public class PropertyCalculations {
     private Double totalM2;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal value_district_m2;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private BiggestRoomDTO biggestRoom;
 }
