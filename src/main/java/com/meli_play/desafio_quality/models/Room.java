@@ -1,6 +1,7 @@
 package com.meli_play.desafio_quality.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +31,5 @@ public class Room {
         this.roomName = roomName;
         this.roomWidth = roomWidth;
         this.roomLength = roomLength;
-    }
-
-    public Room() {
     }
 }

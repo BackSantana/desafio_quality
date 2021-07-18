@@ -3,7 +3,7 @@ package com.meli_play.desafio_quality.service;
 import com.meli_play.desafio_quality.models.District;
 import com.meli_play.desafio_quality.models.Property;
 import com.meli_play.desafio_quality.models.Room;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import java.util.List;
 public class ServiceTestUnit {
 
     @Autowired
-    PropertyService propertyService = new PropertyService();
+    PropertyService propertyService;
 
     @Autowired
-    RoomService roomService = new RoomService();
+    RoomService roomService;
 
     private District district;
     private List<Room> roomList = new ArrayList<>();
@@ -29,7 +29,7 @@ public class ServiceTestUnit {
 
     @BeforeEach
     public void init() {
-        Room room1 = new Room("Quator", 10.0, 10.0);
+        Room room1 = new Room("Quarto", 10.0, 10.0);
         Room room2 = new Room("Sala", 15.0, 10.0);
         Room room3 = new Room("Cozinha", 15.0, 5.0);
         Room room4 = new Room("Lavanderia", 4.0, 5.0);
@@ -42,7 +42,6 @@ public class ServiceTestUnit {
 
     @Test
     public void deveCalcularTotalM2(){
-        init();
         double m2Total = 345.0;
         double propertyM2 = propertyService.calculateTotalPropertyM2(property);
 
@@ -51,7 +50,6 @@ public class ServiceTestUnit {
 
     @Test
     public void deveCalcularValorDaPropriedade(){
-        init();
         BigDecimal valorPropriedade = BigDecimal.valueOf(345.0).multiply(district.getValueDistrictM2());
 
         Assertions.assertEquals(valorPropriedade, propertyService.valueProperty(property));
@@ -59,7 +57,6 @@ public class ServiceTestUnit {
 
     @Test
     public void deveRetornarOMaiorComodo(){
-        init();
         double maiorComodo = 15.0 * 10.0;
 
         Assertions.assertEquals(maiorComodo, roomService.biggestRoom(property).getSquareMeter());
@@ -67,7 +64,6 @@ public class ServiceTestUnit {
 
     @Test
     public void deveCalcularM2Comodo(){
-        init();
         double m2Comodo = 4.0 * 5.0;
         double comodo = property.getRoomLists().get(3).getSquareMeter();
 

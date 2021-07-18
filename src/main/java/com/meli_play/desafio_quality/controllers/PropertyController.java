@@ -59,7 +59,7 @@ public class PropertyController {
         Property property = propertyService.getById(propertyId);
         PropertyCalculations propertyCalculations = new PropertyCalculations(propertyService.valueProperty(property));
 
-        return ResponseEntity.ok(PropertyDTO.toDTOAll(property,propertyCalculations));
+        return ResponseEntity.ok(PropertyDTO.toDTOAll(property, propertyCalculations));
     }
 
     @GetMapping("/calculateAll/{propertyId}")

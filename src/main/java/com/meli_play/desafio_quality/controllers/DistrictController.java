@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api/discrict")
+@RequestMapping("/api/district")
 public class DistrictController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class DistrictController {
     public ResponseEntity addDistrict(@RequestBody @Valid DiscrictForm discrictForm, UriComponentsBuilder uriComponentsBuilder){
         District district = DiscrictForm.toModel(discrictForm);
         districtService.addDistrict(district);
-        URI uri = uriComponentsBuilder.path("/api/discrict/add/{id}").buildAndExpand(district.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/api/district/add/{id}").buildAndExpand(district.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }
