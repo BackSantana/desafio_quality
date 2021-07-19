@@ -35,7 +35,7 @@ public class PropertyController {
         District district = districtService.getDistrict(homeForm.getDiscrictId());
         Property property = PropertyForm.toModel(homeForm, district);
         propertyService.add(property);
-        URI uri = uriComponentsBuilder.path("/api/addProperty/{id}").buildAndExpand(property.getId()).toUri();
+        URI uri = uriComponentsBuilder.path("/api/property/add/{id}").buildAndExpand(property.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
