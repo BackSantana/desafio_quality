@@ -1,16 +1,16 @@
 # Desafio Quality
 
-### Rota: /api/district/add
+### Rota: Post -> /api/district/add
  #### Payload
     {
         "districtName": "Bela Vista",
         "valueDistrictM2": 4000 
     }
 #### Response
-    Status.code: 200
+    Status.code: 201
     Headers: http://localhost:8080/api/district/add/1
 
-### Rota: /api/property/add
+### Rota: Post -> /api/property/add
  #### Payload
     {
         "homeName": "Casa do Carlos",
@@ -23,10 +23,10 @@
         ]
     }
 #### Response 
-    Status.code: 200
-    Headers: http://localhost:8080/api/district/add/1
+    Status.code: 201
+    Headers: http://localhost:8080/api/property/add/{1
 
-### Rota: /api/property/get/{propertyId}
+### Rota: Get -> /api/property/get/{propertyId}
  #### Path Variable
 
  #### Response
@@ -64,7 +64,7 @@
         ]
     }
 
-### /api/property/calculateM2/{propertyId}
+### Rota: Get -> /api/property/calculateM2/{propertyId}
 #### Path Variable
 
 #### Response:
@@ -100,8 +100,9 @@
         }
     }
 
-### Rota: /api/property/calculateValue/{propertyId}
+### Rota: Get -> /api/property/calculateValue/{propertyId}
 #### Path Variable
+
 #### Response
     {
         "id": 1,
@@ -135,8 +136,9 @@
         }
     }
 
-### Rota: /api/property/calculateAll/{propertyId}
+### Rota: Get -> /api/property/calculateAll/{propertyId}
 #### Path Variable
+
 #### Response
     {
         "id": 1,
@@ -176,7 +178,7 @@
             }
         }
     }
-### Rota: /api/room/biggest/{propertyId}
+### Rota: Get -> /api/room/biggest/{propertyId}
 #### Path Variable
 
 #### Response
@@ -216,7 +218,7 @@
             }
         }
     }
-### Rota: /api/room/findAll/{propertyId}
+### Rota: Get -> /api/room/findAll/{propertyId}
 #### Path Variable
 
 #### Response
