@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meli_play.desafio_quality.forms.PropertyForm;
 import com.meli_play.desafio_quality.forms.RoomForm;
 import com.meli_play.desafio_quality.models.District;
+import com.meli_play.desafio_quality.models.Property;
 import com.meli_play.desafio_quality.service.DistrictService;
+import com.meli_play.desafio_quality.service.PropertyService;
 import com.meli_play.desafio_quality.service.RoomService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,6 +26,8 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,14 +48,14 @@ public class ControllerPropertyTest {
     @Autowired
     DistrictService districtService;
 
+    @Autowired
+    PropertyService propertyService;
+
     private District district;
-    private List<RoomForm> roomList = new ArrayList<>();
+    private final List<RoomForm> roomList = new ArrayList<>();
     private PropertyForm property;
 
     public void creatProperty() {
-        this.district = new District("Bela Vista", BigDecimal.valueOf(5000.00));
-        districtService.addDistrict(district);
-
         creatListRooms();
 
         this.property = new PropertyForm();
@@ -85,12 +90,76 @@ public class ControllerPropertyTest {
 
     @Test
     public void deveCriarUmaPropriedade() throws Exception {
+        this.district = new District("Bela Vista", BigDecimal.valueOf(5000.00));
+        districtService.addDistrict(district);
+
         creatProperty();
+
         String payLoad = mapper.writeValueAsString(property);
 
         mock.perform(post("/api/property/add")
                 .contentType("application/json")
                 .content(payLoad))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    @Transactional
+    public void deveRetornarUmPropriedadoPorId() throws Exception {
+        this.district = new District("Morro Doce", BigDecimal.valueOf(5000.00));
+        districtService.addDistrict(district);
+
+        creatProperty();
+
+        Property propertyAux = PropertyForm.toModel(property, district);
+        propertyService.add(propertyAux);
+
+        mock.perform(get("/api/property/get/{id}", propertyAux.getId()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @Transactional
+    public void deveCalcularTotalM2Propriedade() throws Exception {
+        this.district = new District("Brás", BigDecimal.valueOf(5000.00));
+        districtService.addDistrict(district);
+
+        creatProperty();
+
+        Property propertyAux = PropertyForm.toModel(property, district);
+        propertyService.add(propertyAux);
+
+        mock.perform(get("/api/property/calculateM2/{id}", propertyAux.getId()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @Transactional
+    public void deveCalcularValorTotalPropriedade() throws Exception {
+        this.district = new District("Barra Funda", BigDecimal.valueOf(5000.00));
+        districtService.addDistrict(district);
+
+        creatProperty();
+
+        Property propertyAux = PropertyForm.toModel(property, district);
+        propertyService.add(propertyAux);
+
+        mock.perform(get("/api/property/calculateValue/{id}", propertyAux.getId()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @Transactional
+    public void deveFazerTodosCalculosDaPropriedade() throws Exception {
+        this.district = new District("Mandaqui", BigDecimal.valueOf(5000.00));
+        districtService.addDistrict(district);
+
+        creatProperty();
+
+        Property propertyAux = PropertyForm.toModel(property, district);
+        propertyService.add(propertyAux);
+
+        mock.perform(get("/api/property/calculateAll/{id}", propertyAux.getId()))
+                .andExpect(status().isOk());
     }
 }

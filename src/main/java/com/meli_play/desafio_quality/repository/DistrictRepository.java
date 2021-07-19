@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DistrictRepository extends CrudRepository<District, Long> {
+    boolean existsByDistrictName(String name);
 }

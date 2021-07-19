@@ -18,8 +18,8 @@ public class ExceptionHandler {
     @Autowired
     private MessageSource messageSource;
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
-    public ResponseEntity exception(NotFoundException e){
+    @org.springframework.web.bind.annotation.ExceptionHandler({NotFoundException.class, DistrictAlreadyExistsException.class})
+    public ResponseEntity exception(RuntimeException e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 

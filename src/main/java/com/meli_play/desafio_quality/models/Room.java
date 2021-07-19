@@ -20,13 +20,6 @@ public class Room {
     private double roomLength;
     private double squareMeter;
 
-    public Room(String roomName, double roomWidth, double roomLength, double squareMeter) {
-        this.roomName = roomName;
-        this.roomWidth = roomWidth;
-        this.roomLength = roomLength;
-        this.squareMeter = squareMeter;
-    }
-
     public Room(String roomName, double roomWidth, double roomLength) {
         this.roomName = roomName;
         this.roomWidth = roomWidth;

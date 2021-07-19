@@ -62,6 +62,7 @@ public class PropertyController {
         return ResponseEntity.ok(PropertyDTO.toDTOAll(property, propertyCalculations));
     }
 
+
     @GetMapping("/calculateAll/{propertyId}")
     public ResponseEntity<PropertyDTO> calculateAllProperty(@PathVariable Long propertyId){
         Property property = propertyService.getById(propertyId);
