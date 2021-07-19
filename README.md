@@ -1,7 +1,10 @@
 # Desafio Quality
 
-### Rota: `post -> /api/district/add`
- #### Payload
+### Rota: 
+`Method: Post`
+
+` Sign: /api/district/add` 
+#### Payload
     {
         "districtName": "Bela Vista",
         "valueDistrictM2": 4000 
@@ -10,8 +13,11 @@
     Status.code: 201
     Headers: http://localhost:8080/api/district/add/1
 
-### Rota: `post -> /api/property/add`
- #### Payload
+### Rota:
+`Method: Post` 
+
+`Sign: /api/property/add`
+#### Payload
     {
         "homeName": "Casa do Carlos",
         "discrictId": 1,
@@ -26,7 +32,10 @@
     Status.code: 201
     Headers: http://localhost:8080/api/property/add/{1
 
-### Rota: `get -> /api/property/get/{propertyId}`
+### Rota: 
+`Method: Get`
+
+`Sign: /api/property/get/{propertyId}`
  #### Response
     Status.code: 200
         {
@@ -62,7 +71,11 @@
         ]
     }
 
-### Rota: `get -> /api/property/calculateM2/{propertyId}`
+### Rota: 
+`Method: Get`
+
+`Sign: /api/property/calculateM2/{propertyId}`
+
 #### Response:
         {
         "id": 1,
@@ -96,7 +109,10 @@
         }
     }
 
-### Rota: `get -> /api/property/calculateValue/{propertyId}`
+### Rota: 
+`Method: Get`
+
+`Sign: /api/property/calculateValue/{propertyId}`
 #### Response
     {
         "id": 1,
@@ -130,7 +146,12 @@
         }
     }
 
-### Rota: `get -> /api/property/calculateAll/{propertyId}`
+### Rota:
+
+`Method: Get`
+
+`Sign: /api/property/calculateAll/{propertyId}`
+
 #### Response
     {
         "id": 1,
@@ -170,7 +191,12 @@
             }
         }
     }
-### Rota: `get -> /api/room/biggest/{propertyId}`
+### Rota:
+
+`Method: Get`
+
+`Sign: /api/room/biggest/{propertyId}`
+
 #### Response
     {
         "id": 1,
@@ -208,7 +234,12 @@
             }
         }
     }
-### Rota: `get -> /api/room/findAll/{propertyId}`
+### Rota:
+
+`Method: Get`
+
+`Sign: /api/room/findAll/{propertyId}`
+
 #### Response
     {
         "id": 1,
