@@ -63,7 +63,7 @@
             },
             {
                 "id": 3,
-                "roomName": "Presunto",
+                "roomName": "Banheiro",
                 "roomWidth": 23.0,
                 "roomLength": 33.0,
                 "squareMeter": 759.0
@@ -98,7 +98,7 @@
                 "squareMeter": 575.0
             },
             {
-                "roomName": "Presunto",
+                "roomName": "Banheiro",
                 "roomWidth": 23.0,
                 "roomLength": 33.0,
                 "squareMeter": 759.0
@@ -135,7 +135,7 @@
             "squareMeter": 575.0
         },
         {
-            "roomName": "Presunto",
+            "roomName": "Banheiro",
             "roomWidth": 23.0,
             "roomLength": 33.0,
             "squareMeter": 759.0
@@ -174,7 +174,7 @@
             "squareMeter": 575.0
         },
         {
-            "roomName": "Presunto",
+            "roomName": "Banheiro",
             "roomWidth": 23.0,
             "roomLength": 33.0,
             "squareMeter": 759.0
@@ -184,7 +184,7 @@
             "totalM2": 1654.0,
             "value_property_m2": 6616000.000,
             "biggestRoom": {
-                "roomName": "Presunto",
+                "roomName": "Banheiro",
                 "roomWidth": 23.0,
                 "roomLength": 33.0,
                 "squareMeter": 759.0
@@ -219,7 +219,7 @@
             "squareMeter": 575.0
         },
         {
-            "roomName": "Presunto",
+            "roomName": "Banheiro",
             "roomWidth": 23.0,
             "roomLength": 33.0,
             "squareMeter": 759.0
@@ -227,7 +227,7 @@
         ],
         "propertyCalculations": {
             "biggestRoom": {
-                "roomName": "Presunto",
+                "roomName": "Banheiro",
                 "roomWidth": 23.0,
                 "roomLength": 33.0,
                 "squareMeter": 759.0
@@ -262,7 +262,7 @@
             "squareMeter": 575.0
         },
         {
-            "roomName": "Presunto",
+            "roomName": "Banheiro",
             "roomWidth": 23.0,
             "roomLength": 33.0,
             "squareMeter": 759.0
